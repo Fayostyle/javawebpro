@@ -2,6 +2,7 @@ package cn.fayostyle.servlet;
 
 import cn.fayostyle.factory.BeanFactory;
 import cn.fayostyle.service.IDinnerTableService;
+import cn.fayostyle.service.IFoodService;
 import cn.fayostyle.service.IFoodTypeService;
 import cn.fayostyle.utils.WebUtils;
 
@@ -20,7 +21,7 @@ public class BaseServlet extends HttpServlet {
 
     protected IFoodTypeService foodTypeService = BeanFactory.getInstance("foodTypeService", IFoodTypeService.class);
     protected IDinnerTableService dinnerTableService = BeanFactory.getInstance("dinnerTableService", IDinnerTableService.class);
-
+    protected IFoodService foodService = BeanFactory.getInstance("foodService", IFoodService.class);
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
