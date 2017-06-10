@@ -1,11 +1,8 @@
 package cn.fayostyle.servlet;
 
 import cn.fayostyle.entity.DinnerTable;
-import cn.fayostyle.factory.BeanFactory;
-import cn.fayostyle.service.IDinnerTableService;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -14,9 +11,9 @@ import java.util.List;
 /**
  * Created by HuangPan on 2017/6/9.
  */
-public class IndexServlet extends HttpServlet {
+public class IndexServlet extends BaseServlet {
 
-    private IDinnerTableService dinnerTableService = BeanFactory.getInstance("dinnerTableService", IDinnerTableService.class);
+    /**private IDinnerTableService dinnerTableService = BeanFactory.getInstance("dinnerTableService", IDinnerTableService.class);
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
@@ -27,6 +24,7 @@ public class IndexServlet extends HttpServlet {
             listTable(request, response);
         }
     }
+     **/
 
     private Object listTable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Object uri = null;
@@ -34,7 +32,6 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("listDinnerTable", list);
         uri = request.getRequestDispatcher("/app/index.jsp");
         return uri;
-
         //跳转
         //WebUtils.goTo(request, response, uri);
     }
