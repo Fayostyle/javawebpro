@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -68,25 +69,18 @@
 			<!--放桌子的层-->
 			<div id="center_bottom">
 				<ul style=" display:inline-table">
-					
-						<li>
-							<a href="${pageContext.request.contextPath}/app/caidan.jsp">
-								1号桌&nbsp;
-							</a>
-						</li>
-					
-						<li>
-							<a href="${pageContext.request.contextPath}/app/caidan.jsp">
-								2号桌&nbsp;
-							</a>
-						</li>
-					
-						<li>
-							<a href="${pageContext.request.contextPath}/app/caidan.jsp">
-								3号桌&nbsp;
-							</a>
-						</li>
-					
+					<c:choose>
+						<c:when test="${not empty requestScope.listDinnerTable}">
+							<c:forEach var="dt" items="${requestScope.listDinnerTable}">
+								<li>
+									<a href="${pageContext.request.contextPath}/food?method=foodDetail&tableId=${dt.id}">
+										${dt.tableName}&nbsp;
+									</a>
+								</li>
+							</c:forEach>
+						</c:when>
+					</c:choose>
+
 				</ul>
 			</div>
 		</div>

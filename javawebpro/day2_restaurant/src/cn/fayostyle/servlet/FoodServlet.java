@@ -69,7 +69,7 @@ public class FoodServlet extends BaseServlet {
         request.setAttribute("pb", pb);
 
         // 1.3 查询所有的“菜系信息”，保存
-        List<FoodType> listFoodType = foodTypeService.getAll();
+        List<FoodType> listFoodType = foodTypeService.query();
         request.setAttribute("listFoodType", listFoodType);
 
         //挑战 转发

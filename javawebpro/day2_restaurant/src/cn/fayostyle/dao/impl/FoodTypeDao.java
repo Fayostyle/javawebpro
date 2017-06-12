@@ -3,31 +3,24 @@ package cn.fayostyle.dao.impl;
 import cn.fayostyle.dao.IFoodTypeDao;
 import cn.fayostyle.entity.FoodType;
 import cn.fayostyle.utils.JdbcUtils;
+import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
  * Created by HuangPan on 2017/5/30.
  */
 public class FoodTypeDao implements IFoodTypeDao {
-    @Override
-    public void save(FoodType foodType) {
-        String sql = "insert into foodType(typeName) values(?)";
-        try {
-            JdbcUtils.getQueryRunner().update(sql, foodType.getTypeName());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
+    private QueryRunner qr = JdbcUtils.getQueryRunner();
     @Override
-    public void update(FoodType foodType) {
-        String sql = "update foodType set typeName=? where id=?";
+    public void add(FoodType foodType) {
+        String sql = "insert into foodtype(typeName) values(?) ";
         try {
-            JdbcUtils.getQueryRunner().update(sql, foodType.getTypeName(), foodType.getId());
+            qr.update(sql, foodType.getTypeName());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -35,40 +28,59 @@ public class FoodTypeDao implements IFoodTypeDao {
 
     @Override
     public void delete(int id) {
-        String sql = "delete from foodType where id=?";
+        String sql = "delete from foodtype where id=?";
         try {
-            JdbcUtils.getQueryRunner().update(sql, id);
+            qr.update(sql, id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public List<FoodType> getAll() {
-        String sql = "select * from foodType";
+    public void update(FoodType foodType) {
+        String sql = "update foodtype set typeName=? where id=?";
         try {
-            return JdbcUtils.getQueryRunner().query(sql, new BeanListHandler<FoodType>(FoodType.class));
-        } catch (SQLException e) {
+            qr.update(sql, foodType.getTypeName(), foodType.getId());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<FoodType> query() {
+        String sql = "select * from foodtype";
+        try {
+            return qr.query(sql, new BeanListHandler<FoodType>(FoodType.class));
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
     public FoodType findById(int id) {
-        String sql = "select * from foodType where id=?";
+        String sql = "select * from foodtype where id=?";
         try {
-
-            return JdbcUtils.getQueryRunner().query(sql, new BeanHandler<FoodType>(FoodType.class), id);
+          return qr.query(sql, new BeanHandler<FoodType>(FoodType.class), id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public List<FoodType> getAll(String typeName) {
-        String sql = "select * from foodType where typeName like ?";
+    public List<FoodType> query(String keyword) {
+        String sql = "select * from foodtype where typeName like ?";
         try {
-            return JdbcUtils.getQueryRunner().query(sql, new BeanListHandler<FoodType>(FoodType.class), "%" + typeName + "%");
+            return qr.query(sql, new BeanListHandler<FoodType>(FoodType.class), keyword);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Integer getFirstType() {
+        String sql = "select * from foodtype";
+        try {
+            return qr.query(sql, new ScalarHandler<Integer>());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

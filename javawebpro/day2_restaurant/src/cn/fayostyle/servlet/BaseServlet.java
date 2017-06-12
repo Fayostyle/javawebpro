@@ -24,7 +24,7 @@ public class BaseServlet extends HttpServlet {
     protected IFoodService foodService = BeanFactory.getInstance("foodService", IFoodService.class);
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //（保存跳转的资源） 方法返回值
         Object returnValue = null;
 
@@ -47,7 +47,8 @@ public class BaseServlet extends HttpServlet {
 
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
+
 }

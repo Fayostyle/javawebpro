@@ -1,5 +1,5 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
  	<!-- 包含公共的JSP代码片段 -->
@@ -9,10 +9,10 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="style/js/jquery.js"></script>
-<script type="text/javascript" src="style/js/page_common.js"></script>
-<link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/sys/style/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/sys/style/js/page_common.js"></script>
+<link href="${pageContext.request.contextPath}/sys/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/sys/style/css/index_1.css" />
 </head>
 <body>
 <!-- 页面标题 -->
@@ -20,7 +20,7 @@
 	<div id="TitleArea_Head"></div>
 	<div id="TitleArea_Title">
 		<div id="TitleArea_Title_Content">
-			<img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 餐桌列表
+			<img border="0" width="13" height="13" src="${pageContext.request.contextPath}/sys/style/images/title_arrow.gif"/> 餐桌列表
 		</div>
     </div>
 	<div id="TitleArea_End"></div>

@@ -2,6 +2,7 @@ package cn.fayostyle.servlet;
 
 import cn.fayostyle.entity.FoodType;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +43,11 @@ public class FoodTypeServlet extends BaseServlet {
     }
     **/
 
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        List<FoodType> list = foodTypeService.query();
+        config.getServletContext().setAttribute("foodtype", list);
+    }
     public Object update(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         Object uri = null;
@@ -73,7 +79,7 @@ public class FoodTypeServlet extends BaseServlet {
 
     public Object list(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Object uri = null;
-        List<FoodType> list = foodTypeService.getAll();
+        List<FoodType> list = foodTypeService.query();
         request.setAttribute("listFoodType", list);
         uri = request.getRequestDispatcher("/sys/type/foodtype_list.jsp");
         return uri;
@@ -84,10 +90,19 @@ public class FoodTypeServlet extends BaseServlet {
         String foodTypeName = request.getParameter("foodTypeName");
         FoodType ft = new FoodType();
         ft.setTypeName(foodTypeName);
-        foodTypeService.save(ft);
+        foodTypeService.add(ft);
         uri = request.getRequestDispatcher("/foodType?method=list");
         return uri;
     }
 
+    public void search(HttpServletRequest request, HttpServletResponse response) {
+        Object uri = null;
+        String keyword = request.getParameter("keyword");
+        if(keyword != null && !"".equals(keyword.trim())) {
+            List<FoodType> list = foodTypeService.query(keyword);
+            request.setAttribute("list", list);
+            uri = request.getRequestDispatcher("/foodType?method=list");
+        }
+    }
     
 }

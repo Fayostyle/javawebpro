@@ -8,33 +8,44 @@ import java.util.List;
  * Created by HuangPan on 2017/5/31.
  */
 public interface IFoodTypeService {
-    /**
-     * 添加
-     */
-    void save(FoodType foodType);
+    /******************************* V1.0版本  *************************/
+//    /**
+//     * 添加
+//     */
+//    void save(FoodType foodType);
+//
+//    /**
+//     * 更新
+//     */
+//    void update(FoodType foodType);
+//
+//    /**
+//     * 删除
+//     */
+//    void delete(int id);
+//
+//    /**
+//     * 根据主键查询
+//     */
+//    FoodType findById(int id);
+//
+//    /**
+//     * 查询全部
+//     */
+//    List<FoodType> getAll();
+//
+//    /**
+//     * 根据菜系名称查询
+//     */
+//    List<FoodType> getAll(String typeName);
 
-    /**
-     * 更新
-     */
-    void update(FoodType foodType);
 
-    /**
-     * 删除
-     */
+    /*************************** V2.0版本 *************************************/
+    void add(FoodType foodType);
     void delete(int id);
-
-    /**
-     * 根据主键查询
-     */
+    void update(FoodType foodType);
+    List<FoodType> query();
     FoodType findById(int id);
-
-    /**
-     * 查询全部
-     */
-    List<FoodType> getAll();
-
-    /**
-     * 根据菜系名称查询
-     */
-    List<FoodType> getAll(String typeName);
+    List<FoodType> query(String keyword);
+    Integer getFirstType();
 }

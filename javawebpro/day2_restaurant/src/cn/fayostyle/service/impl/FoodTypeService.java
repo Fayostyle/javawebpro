@@ -16,14 +16,11 @@ public class FoodTypeService implements IFoodTypeService {
     //对象的创建，不能写死，
     //用工厂创建对象
     private IFoodTypeDao foodTypeDao = BeanFactory.getInstance("foodtypeDao", IFoodTypeDao.class);
-    @Override
-    public void save(FoodType foodType) {
-        foodTypeDao.save(foodType);
-    }
+
 
     @Override
-    public void update(FoodType foodType) {
-        foodTypeDao.update(foodType);
+    public void add(FoodType foodType) {
+        foodTypeDao.add(foodType);
     }
 
     @Override
@@ -32,18 +29,27 @@ public class FoodTypeService implements IFoodTypeService {
     }
 
     @Override
+    public void update(FoodType foodType) {
+        foodTypeDao.update(foodType);
+    }
+
+    @Override
+    public List<FoodType> query() {
+        return foodTypeDao.query();
+    }
+
+    @Override
     public FoodType findById(int id) {
         return foodTypeDao.findById(id);
     }
 
     @Override
-    public List<FoodType> getAll() {
-        return foodTypeDao.getAll();
+    public List<FoodType> query(String keyword) {
+        return foodTypeDao.query(keyword);
     }
 
     @Override
-    public List<FoodType> getAll(String typeName) {
-        return foodTypeDao.getAll(typeName);
+    public Integer getFirstType() {
+        return foodTypeDao.getFirstType();
     }
-
 }
