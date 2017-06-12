@@ -25,6 +25,7 @@ public class BaseServlet extends HttpServlet {
 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         //（保存跳转的资源） 方法返回值
         Object returnValue = null;
 
