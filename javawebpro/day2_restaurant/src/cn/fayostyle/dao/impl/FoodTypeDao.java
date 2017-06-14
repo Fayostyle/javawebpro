@@ -70,7 +70,7 @@ public class FoodTypeDao implements IFoodTypeDao {
     public List<FoodType> query(String keyword) {
         String sql = "select * from foodtype where typeName like ?";
         try {
-            return qr.query(sql, new BeanListHandler<FoodType>(FoodType.class), keyword);
+            return qr.query(sql, new BeanListHandler<FoodType>(FoodType.class), "%" + keyword + "%");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

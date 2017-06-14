@@ -18,6 +18,8 @@ public class WebUtils {
             ((RequestDispatcher) uri).forward(request, response);
         } else if (uri instanceof String) {
             response.sendRedirect(request.getContextPath() + uri);
+        } else if(uri == null) {
+            response.sendRedirect(request.getContextPath() + "/error/error.jsp");
         }
     }
 }

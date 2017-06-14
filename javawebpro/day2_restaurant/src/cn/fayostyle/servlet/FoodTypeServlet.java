@@ -46,7 +46,7 @@ public class FoodTypeServlet extends BaseServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         List<FoodType> list = foodTypeService.query();
-        config.getServletContext().setAttribute("foodtype", list);
+        config.getServletContext().setAttribute("listFoodType", list);
     }
     public Object update(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
@@ -95,14 +95,15 @@ public class FoodTypeServlet extends BaseServlet {
         return uri;
     }
 
-    public void search(HttpServletRequest request, HttpServletResponse response) {
+    public Object search(HttpServletRequest request, HttpServletResponse response) {
         Object uri = null;
         String keyword = request.getParameter("keyword");
         if(keyword != null && !"".equals(keyword.trim())) {
             List<FoodType> list = foodTypeService.query(keyword);
-            request.setAttribute("list", list);
-            uri = request.getRequestDispatcher("/foodType?method=list");
+            request.setAttribute("listFoodType", list);
+            uri = request.getRequestDispatcher("/sys/type/foodtype_list.jsp");
         }
+        return uri;
     }
     
 }

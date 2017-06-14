@@ -27,8 +27,15 @@
         <servlet-name>FoodServlet</servlet-name>
         <servlet-class>cn.fayostyle.servlet.FoodServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DinnerTableServlet</servlet-name>
+        <servlet-class>cn.fayostyle.servlet.DinnerTableServlet</servlet-class>
+    </servlet>
 
-
+    <servlet-mapping>
+        <servlet-name>DinnerTableServlet</servlet-name>
+        <url-pattern>/dinnerTable</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FoodTypeServlet</servlet-name>
         <url-pattern>/foodType</url-pattern>

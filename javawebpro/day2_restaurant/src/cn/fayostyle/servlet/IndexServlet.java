@@ -28,7 +28,7 @@ public class IndexServlet extends BaseServlet {
 
     private Object listTable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Object uri = null;
-        List<DinnerTable> list = dinnerTableService.findNoUseTable();
+        List<DinnerTable> list = dinnerTableService.query();
         request.setAttribute("listDinnerTable", list);
         uri = request.getRequestDispatcher("/app/index.jsp");
         return uri;
